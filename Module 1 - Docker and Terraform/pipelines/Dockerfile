@@ -20,7 +20,7 @@ RUN uv sync --locked
 # RUN pip install pandas pyarrow
 
 # Copying local script to the container
-# COPY pipeline.py .
+COPY ingest_data.py .
 
 # Setting entrypoint to be our script (it will execute when the we run the image)
-ENTRYPOINT [ "uv", "run", "python", "pipeline.py" ]
+ENTRYPOINT [ "uv", "run", "python", "ingest_data.py" ]
