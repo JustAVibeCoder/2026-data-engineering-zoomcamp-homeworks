@@ -23,7 +23,7 @@ docker run -it \
 # Run the containerised ingestion
 docker run -it \
     --network=pg-network \
-    taxi_ingest:v001 \
+    data_ingest:v0.1 \
   --pg-user=root \
   --pg-pass=root \
   --pg-host=pgdatabase \

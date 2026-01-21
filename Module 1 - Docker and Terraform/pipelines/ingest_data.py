@@ -46,6 +46,7 @@ parse_dates = [
 @click.option('--pg-db', default='ny_taxi', help='PostgreSQL database')
 @click.option('--table-name', default='yellow_taxi_data', help='Table name in PostgreSQL')
 @click.option('--chunksize', default=100000, type=int, help='Chunk size for reading CSV')
+
 def ingest(pg_user, pg_pass, pg_host, pg_port, pg_db, table_name, chunksize):
     """Ingest NYC taxi data into PostgreSQL database."""
     engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
