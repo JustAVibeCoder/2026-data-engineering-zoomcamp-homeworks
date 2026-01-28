@@ -42,8 +42,23 @@ services:
       pgdatabase:
         condition: service_healthy
 
+  jupyter:
+    image: jupyter/datascience-notebook:latest
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - vol-jupyter_data:/home/jovyan/work
+    depends_on:
+      pgdatabase:
+        condition: service_healthy
+
 volumes:
   vol-pgdata:
     name: vol-pgdata
   vol-pgadmin_data:
     name: vol-pgadmin_data
+  vol-jupyter_data:
+    name: vol-jupyter_data
