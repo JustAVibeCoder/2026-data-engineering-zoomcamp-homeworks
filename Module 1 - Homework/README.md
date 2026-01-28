@@ -1,6 +1,6 @@
 # 🚕 NYC Taxi Data Ingestion Pipeline
 
-**A production-ready containerized data ingestion system using Docker, PostgreSQL, and Python**
+**A containerized data ingestion project using Docker, PostgreSQL, and Python**
 
 > Part of the Data Engineering Zoomcamp - Module 1 Homework
 
@@ -12,7 +12,7 @@
 
 ## 📋 Overview
 
-This project demonstrates enterprise-level containerized data engineering practices by building a complete ETL pipeline for NYC taxi data. It showcases:
+This project demonstrates a containerized data engineering practices by building a complete ETL pipeline for NYC taxi data. It showcases:
 
 - **Docker & Docker Compose** for container orchestration
 - **PostgreSQL** for data warehousing
