@@ -1,0 +1,64 @@
+services:
+  pgdatabase:
+    container_name: postgres
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "ny_taxi"
+    ports:
+      - "5433:5432"
+    volumes:
+      - vol-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d ny_taxi"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin@pgadmin.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    ports:
+      - "8080:80"
+    volumes:
+      - vol-pgadmin_data:/var/lib/pgadmin
+
+  data_ingest:
+    image: data-ingest:v0.1
+    container_name: data_ingest
+    command:
+      - --pg-user=root
+      - --pg-pass=root
+      - --pg-host=postgres
+      - --pg-port=5432
+      - --pg-db=ny_taxi
+      - --data-table-name=yellow_taxi_trips
+      - --zones-table-name=taxi_zones
+    depends_on:
+      pgdatabase:
+        condition: service_healthy
+
+  jupyter:
+    image: jupyter/datascience-notebook:latest
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - vol-jupyter_data:/home/jovyan/work
+    depends_on:
+      pgdatabase:
+        condition: service_healthy
+
+volumes:
+  vol-pgdata:
+    name: vol-pgdata
+  vol-pgadmin_data:
+    name: vol-pgadmin_data
+  vol-jupyter_data:
+    name: vol-jupyter_data

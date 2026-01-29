@@ -1,0 +1,13 @@
+[project]
+name = "module-1-homework"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.1",
+    "pandas>=3.0.0",
+    "psycopg2>=2.9.11",
+    "pyarrow>=23.0.0",
+    "sqlalchemy>=2.0.46",
+]
