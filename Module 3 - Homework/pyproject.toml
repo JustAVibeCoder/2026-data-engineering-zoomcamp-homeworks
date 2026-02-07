@@ -1,0 +1,9 @@
+[project]
+name = "module-3-homework"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google>=3.0.0",
+]
