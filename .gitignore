@@ -1,5 +1,6 @@
 .env
 *.parquet  
+creds.json
 secrets.txt
 my-creds.json
 google-cloud-sdk/
